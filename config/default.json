@@ -1,0 +1,6 @@
+{
+    "mongoURI": "mongodb+srv://deepak:dee123456@cluster0-thheq.mongodb.net/test?retryWrites=true&w=majority",
+    "jwtSecret": "dpkToken",
+    "githubClientId": "7f2dacf926cd88e3e6b7",
+    "githubSecrat": "621bed83c61c9051693f8395df9fb29d29d6b091"
+}
