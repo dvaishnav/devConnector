@@ -1,8 +1,15 @@
-import React, { Fragment, useState } from 'react'
-import { Link } from 'react-router-dom'
-import axios from 'axios'
+import React, { Fragment, useState } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+// import axios from 'axios'
 
-export const Login = () => {
+// import { setAlert } from '../../actions/alert';
+// import { register } from '../../actions/auth';
+import { login } from '../../actions/auth';
+import PropTypes from 'prop-types';
+
+const Login = ({login}) => {
+
     const [formData, setFormData] = useState({
         email: '',
         password: ''
@@ -13,20 +20,23 @@ export const Login = () => {
     const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
     const onSubmit = async e => {
         e.preventDefault();
-        try {
+        console.log({email,password});
+        //register({name:'test',email,password});
+        login({email,password});
+        // try {
 
-            const config = {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }
-            const body = JSON.stringify(formData);
-            const res = await axios.post('/api/auth/login', body, config);
-            console.log(res.data);
+        //     const config = {
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         }
+        //     }
+        //     const body = JSON.stringify(formData);
+        //     const res = await axios.post('/api/auth/login', body, config);
+        //     console.log(res.data);
 
-        } catch (err) {
-            console.log(err.response.data);
-        }
+        // } catch (err) {
+        //     console.log(err.response.data);
+        // }
     }
     return (
         <Fragment>
@@ -58,7 +68,13 @@ export const Login = () => {
                 Don't have an account? <Link to="/register">Sign Up</Link>
             </p>
         </Fragment>
-    )
+    );
 }
 
-export default Login;
+Login.propTypes = {
+    login: PropTypes.func.isRequired
+    // register: PropTypes.func.isRequired
+}
+
+
+export default connect(null, {login})(Login);
