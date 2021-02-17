@@ -202,7 +202,7 @@ router.delete('/experience/:exp_id', auth, async (req, res) => {
 router.put('/education', [auth, [
     check('school', 'Title is required').not().isEmpty(),
     check('degree', 'Company is required').not().isEmpty(),
-    check('feieldofstudy', 'feield of study is required').not().isEmpty(),
+    check('fieldofstudy', 'feield of study is required').not().isEmpty(),
     check('from', 'From date is required').not().isEmpty()
 ]], async (req, res) => {
     errors = validationResult(req);
@@ -210,9 +210,9 @@ router.put('/education', [auth, [
         res.status(400).json({ errors: errors.array() });
     }
 
-    const { school, degree, feieldofstudy, from, to, current, description } = req.body;
+    const { school, degree, fieldofstudy, from, to, current, description } = req.body;
     const newEdu = {
-        school, degree, feieldofstudy, from, to, current, description
+        school, degree, fieldofstudy, from, to, current, description
     }
 
     try {
